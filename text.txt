@@ -1,0 +1,100 @@
+npm init
+-entry point:server.js
+
+npm i express
+-it makes eazy to backend app with node.js,do not have to follow certain rules
+
+ console.log(req.params.id);  //on console
+ res.send(req.params.id);     //on output page
+
+const {chats} = require("./data/data");
+const chats = require("./data/data");...this wont work as it will return an array due to data set type
+ 
+ npm install dotenv
+const dotenv = require("dotenv");
+ dotenv.config(); ..to use env variable
+
+ POSTMAN:
+ http://localhost:5000/api/chat
+ http://localhost:5000/api/chat/617a077e18c25468b27c4dd4
+
+ npx create-react-app frontend
+ App.js is main file of out frontend Project
+
+ component Library:chakraui
+ npm i @chakra-ui/react @emotion/react @emotion/styled framer-motion
+
+ to connect backend from frontend when we try to call an api from frontend to backend its gonna make a 
+ CORS error.....therefor to avoid cors error we need to provide proxy to our frontend app
+ CORS Rules: Just like you have rules about who can take toys from your toy box, websites have rules about who can get information from them. This keeps everything safe.
+
+Proxy Helper: When you want to get around these rules safely, you can use a helper (proxy) to get the information for you. The helper knows how to ask for permission properly, so you still get what you need without any problems.
+Backend:5000 and Frontend:3000 we need to have same origin if we want to access from frontend to backend
+fronend--package.json(file)--"proxy":"http://127.0.0.1:5000",
+
+npm install react-router-dom@5 ---in frontend
+
+<Route path="/" component={Homepage} exact />
+      <Route path="/chats" component={Chatpage} />
+      exact used as path / is of home which is included in both homeand chats page that is why exact keyword is used
+
+      npm install axios ---->htp request to perform curd operations used to communicte with backend
+       const fetchChats=async()=>{
+     const data=await axios.get("/api/chat");
+     console.log(data);
+    };
+
+    const {data}=await axios.get("/api/chat");
+    just to get data do above to destructure it or else
+    const data=await axios.get("/api/chat"); with this we would have got many other details extra which is unnecessary
+
+    to write js insixe html or react we use curly braces
+
+    chatpage.js:
+    import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+const Chatpage = () => {
+    const [chats,setChats]=useState([]);
+    const fetchChats=async()=>{
+     const {data}=await axios.get("/api/chat");
+     //console.log(data);
+     setChats(data);
+    };
+    useEffect(() => {
+    fetchChats();
+    }, [])
+  return (
+    <div>
+      {chats.map((chat)=>(
+        <div key={chat._id}>{chat.chatName}</div>
+      ))};
+    </div>
+  )
+}
+//in this we take data from /api/chat to variable setChats and send it to chats 
+and from there we access and display many types of data
+
+backend---> create schema or models for our data chat data,message data or for
+user data wewill structure how it will be stored in our data base and fields it will contain
+
+npm i mongoose---indisde root of folder
+ chatName: { type: String, trim: true }, ...trim tai extra spaces na rahe before after
+
+ homepage--container:helps to keep page responsive to different different screen size
+ Box work same as div 
+in chakraui tags we can directly write ou css inside tags
+Vstack to vertically align our things
+
+
+ 
+
+backend--config--db.js --responsibe to connect to databse
+
+Purvi_88716 --password
+
+npm i colors
+npm i express-async-handler
+npm install jsonwebtoken --helps in authorization
+npm i bcryptjs
+Cloudinary ro add picture
+Cloudinary-settings-upload-
